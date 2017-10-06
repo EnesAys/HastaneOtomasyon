@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C06FD0B9-99DD-440B-8F8C-684D821CEFB4}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HastaneOtomasyon</RootNamespace>
+    <AssemblyName>HastaneOtomasyon</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DoktorForms\frmDoktorDuzenle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DoktorForms\frmDoktorDuzenle.Designer.cs">
+      <DependentUpon>frmDoktorDuzenle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DoktorForms\frmDoktorEkle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DoktorForms\frmDoktorEkle.Designer.cs">
+      <DependentUpon>frmDoktorEkle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DoktorForms\frmDoktorSil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DoktorForms\frmDoktorSil.Designer.cs">
+      <DependentUpon>frmDoktorSil.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmRandevu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmRandevu.Designer.cs">
+      <DependentUpon>frmRandevu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\HastaForms\frmHastaDuzenle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\HastaForms\frmHastaDuzenle.Designer.cs">
+      <DependentUpon>frmHastaDuzenle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\HastaForms\frmHastaEkle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\HastaForms\frmHastaEkle.Designer.cs">
+      <DependentUpon>frmHastaEkle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\HastaForms\frmHastaSil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\HastaForms\frmHastaSil.Designer.cs">
+      <DependentUpon>frmHastaSil.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\HemsireForms\frmHemsireDuzenle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\HemsireForms\frmHemsireDuzenle.Designer.cs">
+      <DependentUpon>frmHemsireDuzenle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\HemsireForms\frmHemsireEkle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\HemsireForms\frmHemsireEkle.Designer.cs">
+      <DependentUpon>frmHemsireEkle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\HemsireForms\frmHemsireSil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\HemsireForms\frmHemsireSil.Designer.cs">
+      <DependentUpon>frmHemsireSil.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DoktorForms\frmDoktorDuzenle.resx">
+      <DependentUpon>frmDoktorDuzenle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DoktorForms\frmDoktorEkle.resx">
+      <DependentUpon>frmDoktorEkle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DoktorForms\frmDoktorSil.resx">
+      <DependentUpon>frmDoktorSil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmRandevu.resx">
+      <DependentUpon>frmRandevu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\HastaForms\frmHastaDuzenle.resx">
+      <DependentUpon>frmHastaDuzenle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\HastaForms\frmHastaEkle.resx">
+      <DependentUpon>frmHastaEkle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\HastaForms\frmHastaSil.resx">
+      <DependentUpon>frmHastaSil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\HemsireForms\frmHemsireDuzenle.resx">
+      <DependentUpon>frmHemsireDuzenle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\HemsireForms\frmHemsireEkle.resx">
+      <DependentUpon>frmHemsireEkle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\HemsireForms\frmHemsireSil.resx">
+      <DependentUpon>frmHemsireSil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HastaneOtomasyonDATA\HastaneOtomasyonDATA.csproj">
+      <Project>{3f2277c0-6346-4126-b9ee-1ac924219ac7}</Project>
+      <Name>HastaneOtomasyonDATA</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HastaneOtomasyonLIB\HastaneOtomasyonLIB.csproj">
+      <Project>{fe6ad4aa-7432-4b7f-b0c9-a1bea5303830}</Project>
+      <Name>HastaneOtomasyonLIB</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

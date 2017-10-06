@@ -1,0 +1,445 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="HastaneModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Birim">
+          <Key>
+            <PropertyRef Name="BirimID" />
+          </Key>
+          <Property Name="BirimID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BirimAd" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Doktor">
+          <Key>
+            <PropertyRef Name="DoktorID" />
+          </Key>
+          <Property Name="DoktorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DoktorAd" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DoktorSoyad" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="BirimID" Type="int" Nullable="false" />
+          <Property Name="Maas" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Hasta">
+          <Key>
+            <PropertyRef Name="HastaID" />
+          </Key>
+          <Property Name="HastaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HastaAd" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="HastaSoyad" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="HastaYas" Type="int" Nullable="false" />
+          <Property Name="KanGrubu" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Cinsiyet" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DTarih" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Hemsire">
+          <Key>
+            <PropertyRef Name="HemsireID" />
+          </Key>
+          <Property Name="HemsireID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HemsireAd" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="HemsireSoyad" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="BirimID" Type="int" Nullable="false" />
+          <Property Name="DoktorID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Randevu">
+          <Key>
+            <PropertyRef Name="RandevuID" />
+          </Key>
+          <Property Name="RandevuID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BirimID" Type="int" Nullable="false" />
+          <Property Name="DoktorID" Type="int" Nullable="false" />
+          <Property Name="HastaID" Type="int" Nullable="false" />
+          <Property Name="RTarih" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_Doktor_Birim">
+          <End Role="Birim" Type="Self.Birim" Multiplicity="1" />
+          <End Role="Doktor" Type="Self.Doktor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Birim">
+              <PropertyRef Name="BirimID" />
+            </Principal>
+            <Dependent Role="Doktor">
+              <PropertyRef Name="BirimID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Hemsire_Birim">
+          <End Role="Birim" Type="Self.Birim" Multiplicity="1" />
+          <End Role="Hemsire" Type="Self.Hemsire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Birim">
+              <PropertyRef Name="BirimID" />
+            </Principal>
+            <Dependent Role="Hemsire">
+              <PropertyRef Name="BirimID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Hemsire_Doktor">
+          <End Role="Doktor" Type="Self.Doktor" Multiplicity="1" />
+          <End Role="Hemsire" Type="Self.Hemsire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doktor">
+              <PropertyRef Name="DoktorID" />
+            </Principal>
+            <Dependent Role="Hemsire">
+              <PropertyRef Name="DoktorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Randevu_Birim">
+          <End Role="Birim" Type="Self.Birim" Multiplicity="1" />
+          <End Role="Randevu" Type="Self.Randevu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Birim">
+              <PropertyRef Name="BirimID" />
+            </Principal>
+            <Dependent Role="Randevu">
+              <PropertyRef Name="BirimID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Randevu_Doktor">
+          <End Role="Doktor" Type="Self.Doktor" Multiplicity="1" />
+          <End Role="Randevu" Type="Self.Randevu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doktor">
+              <PropertyRef Name="DoktorID" />
+            </Principal>
+            <Dependent Role="Randevu">
+              <PropertyRef Name="DoktorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Randevu_Hasta">
+          <End Role="Hasta" Type="Self.Hasta" Multiplicity="1" />
+          <End Role="Randevu" Type="Self.Randevu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hasta">
+              <PropertyRef Name="HastaID" />
+            </Principal>
+            <Dependent Role="Randevu">
+              <PropertyRef Name="HastaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HastaneModelStoreContainer">
+          <EntitySet Name="Birim" EntityType="Self.Birim" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Doktor" EntityType="Self.Doktor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hasta" EntityType="Self.Hasta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hemsire" EntityType="Self.Hemsire" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Randevu" EntityType="Self.Randevu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Doktor_Birim" Association="Self.FK_Doktor_Birim">
+            <End Role="Birim" EntitySet="Birim" />
+            <End Role="Doktor" EntitySet="Doktor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Hemsire_Birim" Association="Self.FK_Hemsire_Birim">
+            <End Role="Birim" EntitySet="Birim" />
+            <End Role="Hemsire" EntitySet="Hemsire" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Hemsire_Doktor" Association="Self.FK_Hemsire_Doktor">
+            <End Role="Doktor" EntitySet="Doktor" />
+            <End Role="Hemsire" EntitySet="Hemsire" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Randevu_Birim" Association="Self.FK_Randevu_Birim">
+            <End Role="Birim" EntitySet="Birim" />
+            <End Role="Randevu" EntitySet="Randevu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Randevu_Doktor" Association="Self.FK_Randevu_Doktor">
+            <End Role="Doktor" EntitySet="Doktor" />
+            <End Role="Randevu" EntitySet="Randevu" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Randevu_Hasta" Association="Self.FK_Randevu_Hasta">
+            <End Role="Hasta" EntitySet="Hasta" />
+            <End Role="Randevu" EntitySet="Randevu" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HastaneModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Birim">
+          <Key>
+            <PropertyRef Name="BirimID" />
+          </Key>
+          <Property Name="BirimID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BirimAd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Doktors" Relationship="Self.FK_Doktor_Birim" FromRole="Birim" ToRole="Doktor" />
+          <NavigationProperty Name="Hemsires" Relationship="Self.FK_Hemsire_Birim" FromRole="Birim" ToRole="Hemsire" />
+          <NavigationProperty Name="Randevus" Relationship="Self.FK_Randevu_Birim" FromRole="Birim" ToRole="Randevu" />
+        </EntityType>
+        <EntityType Name="Doktor">
+          <Key>
+            <PropertyRef Name="DoktorID" />
+          </Key>
+          <Property Name="DoktorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DoktorAd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DoktorSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BirimID" Type="Int32" Nullable="false" />
+          <Property Name="Maas" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Birim" Relationship="Self.FK_Doktor_Birim" FromRole="Doktor" ToRole="Birim" />
+          <NavigationProperty Name="Hemsires" Relationship="Self.FK_Hemsire_Doktor" FromRole="Doktor" ToRole="Hemsire" />
+          <NavigationProperty Name="Randevus" Relationship="Self.FK_Randevu_Doktor" FromRole="Doktor" ToRole="Randevu" />
+        </EntityType>
+        <EntityType Name="Hasta">
+          <Key>
+            <PropertyRef Name="HastaID" />
+          </Key>
+          <Property Name="HastaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HastaAd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HastaSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HastaYas" Type="Int32" Nullable="false" />
+          <Property Name="KanGrubu" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Cinsiyet" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DTarih" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Randevus" Relationship="Self.FK_Randevu_Hasta" FromRole="Hasta" ToRole="Randevu" />
+        </EntityType>
+        <EntityType Name="Hemsire">
+          <Key>
+            <PropertyRef Name="HemsireID" />
+          </Key>
+          <Property Name="HemsireID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HemsireAd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HemsireSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BirimID" Type="Int32" Nullable="false" />
+          <Property Name="DoktorID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Birim" Relationship="Self.FK_Hemsire_Birim" FromRole="Hemsire" ToRole="Birim" />
+          <NavigationProperty Name="Doktor" Relationship="Self.FK_Hemsire_Doktor" FromRole="Hemsire" ToRole="Doktor" />
+        </EntityType>
+        <EntityType Name="Randevu">
+          <Key>
+            <PropertyRef Name="RandevuID" />
+          </Key>
+          <Property Name="RandevuID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BirimID" Type="Int32" Nullable="false" />
+          <Property Name="DoktorID" Type="Int32" Nullable="false" />
+          <Property Name="HastaID" Type="Int32" Nullable="false" />
+          <Property Name="RTarih" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Birim" Relationship="Self.FK_Randevu_Birim" FromRole="Randevu" ToRole="Birim" />
+          <NavigationProperty Name="Doktor" Relationship="Self.FK_Randevu_Doktor" FromRole="Randevu" ToRole="Doktor" />
+          <NavigationProperty Name="Hasta" Relationship="Self.FK_Randevu_Hasta" FromRole="Randevu" ToRole="Hasta" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_Doktor_Birim">
+          <End Role="Birim" Type="Self.Birim" Multiplicity="1" />
+          <End Role="Doktor" Type="Self.Doktor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Birim">
+              <PropertyRef Name="BirimID" />
+            </Principal>
+            <Dependent Role="Doktor">
+              <PropertyRef Name="BirimID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Hemsire_Birim">
+          <End Role="Birim" Type="Self.Birim" Multiplicity="1" />
+          <End Role="Hemsire" Type="Self.Hemsire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Birim">
+              <PropertyRef Name="BirimID" />
+            </Principal>
+            <Dependent Role="Hemsire">
+              <PropertyRef Name="BirimID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Randevu_Birim">
+          <End Role="Birim" Type="Self.Birim" Multiplicity="1" />
+          <End Role="Randevu" Type="Self.Randevu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Birim">
+              <PropertyRef Name="BirimID" />
+            </Principal>
+            <Dependent Role="Randevu">
+              <PropertyRef Name="BirimID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Hemsire_Doktor">
+          <End Role="Doktor" Type="Self.Doktor" Multiplicity="1" />
+          <End Role="Hemsire" Type="Self.Hemsire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doktor">
+              <PropertyRef Name="DoktorID" />
+            </Principal>
+            <Dependent Role="Hemsire">
+              <PropertyRef Name="DoktorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Randevu_Doktor">
+          <End Role="Doktor" Type="Self.Doktor" Multiplicity="1" />
+          <End Role="Randevu" Type="Self.Randevu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doktor">
+              <PropertyRef Name="DoktorID" />
+            </Principal>
+            <Dependent Role="Randevu">
+              <PropertyRef Name="DoktorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Randevu_Hasta">
+          <End Role="Hasta" Type="Self.Hasta" Multiplicity="1" />
+          <End Role="Randevu" Type="Self.Randevu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Hasta">
+              <PropertyRef Name="HastaID" />
+            </Principal>
+            <Dependent Role="Randevu">
+              <PropertyRef Name="HastaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HastaneEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Birims" EntityType="Self.Birim" />
+          <EntitySet Name="Doktors" EntityType="Self.Doktor" />
+          <EntitySet Name="Hastas" EntityType="Self.Hasta" />
+          <EntitySet Name="Hemsires" EntityType="Self.Hemsire" />
+          <EntitySet Name="Randevus" EntityType="Self.Randevu" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <AssociationSet Name="FK_Doktor_Birim" Association="Self.FK_Doktor_Birim">
+            <End Role="Birim" EntitySet="Birims" />
+            <End Role="Doktor" EntitySet="Doktors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Hemsire_Birim" Association="Self.FK_Hemsire_Birim">
+            <End Role="Birim" EntitySet="Birims" />
+            <End Role="Hemsire" EntitySet="Hemsires" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Randevu_Birim" Association="Self.FK_Randevu_Birim">
+            <End Role="Birim" EntitySet="Birims" />
+            <End Role="Randevu" EntitySet="Randevus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Hemsire_Doktor" Association="Self.FK_Hemsire_Doktor">
+            <End Role="Doktor" EntitySet="Doktors" />
+            <End Role="Hemsire" EntitySet="Hemsires" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Randevu_Doktor" Association="Self.FK_Randevu_Doktor">
+            <End Role="Doktor" EntitySet="Doktors" />
+            <End Role="Randevu" EntitySet="Randevus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Randevu_Hasta" Association="Self.FK_Randevu_Hasta">
+            <End Role="Hasta" EntitySet="Hastas" />
+            <End Role="Randevu" EntitySet="Randevus" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HastaneModelStoreContainer" CdmEntityContainer="HastaneEntities">
+          <EntitySetMapping Name="Birims">
+            <EntityTypeMapping TypeName="HastaneModel.Birim">
+              <MappingFragment StoreEntitySet="Birim">
+                <ScalarProperty Name="BirimID" ColumnName="BirimID" />
+                <ScalarProperty Name="BirimAd" ColumnName="BirimAd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Doktors">
+            <EntityTypeMapping TypeName="HastaneModel.Doktor">
+              <MappingFragment StoreEntitySet="Doktor">
+                <ScalarProperty Name="DoktorID" ColumnName="DoktorID" />
+                <ScalarProperty Name="DoktorAd" ColumnName="DoktorAd" />
+                <ScalarProperty Name="DoktorSoyad" ColumnName="DoktorSoyad" />
+                <ScalarProperty Name="BirimID" ColumnName="BirimID" />
+                <ScalarProperty Name="Maas" ColumnName="Maas" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hastas">
+            <EntityTypeMapping TypeName="HastaneModel.Hasta">
+              <MappingFragment StoreEntitySet="Hasta">
+                <ScalarProperty Name="HastaID" ColumnName="HastaID" />
+                <ScalarProperty Name="HastaAd" ColumnName="HastaAd" />
+                <ScalarProperty Name="HastaSoyad" ColumnName="HastaSoyad" />
+                <ScalarProperty Name="HastaYas" ColumnName="HastaYas" />
+                <ScalarProperty Name="KanGrubu" ColumnName="KanGrubu" />
+                <ScalarProperty Name="Cinsiyet" ColumnName="Cinsiyet" />
+                <ScalarProperty Name="DTarih" ColumnName="DTarih" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hemsires">
+            <EntityTypeMapping TypeName="HastaneModel.Hemsire">
+              <MappingFragment StoreEntitySet="Hemsire">
+                <ScalarProperty Name="HemsireID" ColumnName="HemsireID" />
+                <ScalarProperty Name="HemsireAd" ColumnName="HemsireAd" />
+                <ScalarProperty Name="HemsireSoyad" ColumnName="HemsireSoyad" />
+                <ScalarProperty Name="BirimID" ColumnName="BirimID" />
+                <ScalarProperty Name="DoktorID" ColumnName="DoktorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Randevus">
+            <EntityTypeMapping TypeName="HastaneModel.Randevu">
+              <MappingFragment StoreEntitySet="Randevu">
+                <ScalarProperty Name="RandevuID" ColumnName="RandevuID" />
+                <ScalarProperty Name="BirimID" ColumnName="BirimID" />
+                <ScalarProperty Name="DoktorID" ColumnName="DoktorID" />
+                <ScalarProperty Name="HastaID" ColumnName="HastaID" />
+                <ScalarProperty Name="RTarih" ColumnName="RTarih" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="HastaneModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

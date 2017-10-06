@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="90f14efbe19049a692d4708c34899b3d" Name="Diagram1">
+        <EntityTypeShape EntityType="HastaneModel.Birim" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="HastaneModel.Doktor" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HastaneModel.Hasta" Width="1.5" PointX="6" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HastaneModel.Hemsire" Width="1.5" PointX="5.25" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HastaneModel.Randevu" Width="1.5" PointX="8.25" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HastaneModel.sysdiagram" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <AssociationConnector Association="HastaneModel.FK_Doktor_Birim" ManuallyRouted="false" />
+        <AssociationConnector Association="HastaneModel.FK_Hemsire_Birim" ManuallyRouted="false" />
+        <AssociationConnector Association="HastaneModel.FK_Randevu_Birim" ManuallyRouted="false" />
+        <AssociationConnector Association="HastaneModel.FK_Hemsire_Doktor" ManuallyRouted="false" />
+        <AssociationConnector Association="HastaneModel.FK_Randevu_Doktor" ManuallyRouted="false" />
+        <AssociationConnector Association="HastaneModel.FK_Randevu_Hasta" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
